@@ -5,7 +5,7 @@ var App = {
   username: 'anonymous',
 
   initialize: function() {
-    App.username = window.location.search.substr(10);
+    App.username = window.location.search.substr(10); // limits username to 10 characters long
 
     FormView.initialize();
     RoomsView.initialize();
@@ -17,8 +17,10 @@ var App = {
 
   },
 
-  fetch: function(callback = ()=>{}) {
+  fetch: function (callback = () => {}) {
+    
     Parse.readAll((data) => {
+      return;
       // examine the response from the server request:
       console.log(data);
 
