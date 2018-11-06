@@ -6,12 +6,27 @@ var FormView = {
     FormView.$form.on('submit', FormView.handleSubmit); // when submit button is clicked, invoke handlesubmit method
   },
 
-  handleSubmit: function(event) {
+  handleSubmit: function (event) {
     // Stop the browser from submitting the form
+
     event.preventDefault(); //The event.preventDefault() method stops the default action of an element from happening.
 
+    var message = {
+      username: App.username,
+      text: $('#message').val(),
+      roomname: $('select').val()
+    };
 
+    // define success callback
+    var success = function () {
+      // clear text box after success
+      $('#message').val("");
+      RoomsView.renderRoom($('select').val());
+    };
+
+    Parse.create(message, success);
     
+
     console.log('click!');
   },
 

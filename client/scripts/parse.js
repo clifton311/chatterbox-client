@@ -29,13 +29,3 @@ var Parse = {
   }
 
 };
-
-$('submit').click(function() {
-  // make message object with -
-    // username: get the user name
-    // text: get the content from the box
-    // roomname: get the room name
-  // define success callback
-    // call renderMessage or maybe refresh to do a readall
-  // Parse.create(message, success callback)
-});
