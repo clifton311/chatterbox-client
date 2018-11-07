@@ -21,7 +21,7 @@ var FormView = {
     var success = function () {
       // clear text box after success
       $('#message').val("");
-      RoomsView.renderRoom($('select').val());
+      Parse.readAll(data => RoomsView.renderRoom($('select').val(), data));
     };
 
     Parse.create(message, success);

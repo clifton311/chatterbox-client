@@ -6,7 +6,7 @@ var RoomsView = {
   initialize: function () {
     RoomsView.$button.on('click', RoomsView.handleAddButton);
     //event handler for addbutton click()
-    RoomsView.$select.on('change', RoomsView.handleSelectChange);
+    RoomsView.$select.change(RoomsView.handleSelectChange);
     //event handler for select - change()
   },
 
@@ -16,19 +16,20 @@ var RoomsView = {
   },
   
   handleSelectChange: function(){
-    RoomsView.renderRoom(RoomsView.$select.val());
+    Parse.readAll(data => RoomsView.renderRoom(RoomsView.$select.val(), data));
   },
 
   
-  renderRoom: function (roomname, data = Parse.readAll().results) {
+  renderRoom: function (roomname, data) {
     // get updated data from server and filter for the messages in the current chat room
-    var chatData = _.filter(data, message => {
-      message.hasOwnProperty('roomname') &&
-      message.hasOwnProperty('username') &&
-      message.roomname === roomname;
+    var chatData = _.filter(data.results, message => {
+      return message.hasOwnProperty('roomname') &&
+        message.hasOwnProperty('username') &&
+        message.roomname === roomname;
     });
     // delete current messages in chat area
-    debugger;
+
+    // debugger;
     $('#chats').children().remove();
     // add the updated messages to chat area
     _.each(chatData, (message) => MessagesView.renderMessage(message));
