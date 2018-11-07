@@ -21,18 +21,14 @@ var App = {
     
     Parse.readAll((data) => {
       //find the unique values of the room names
-      Messages.data = data;
       var rooms = _.uniq(_.pluck(data.results, "roomname"));
       //add those rooms to the select
       _.each(rooms, (room) => Rooms.add(room));
       // pick default and render chats for that room
       RoomsView.$select.val(rooms[1]);
       RoomsView.renderRoom(rooms[1], data);
-      // examine the response from the server request:
-      console.log(data);
 
       callback();
-      console.log('done');
     });
   },
 

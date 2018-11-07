@@ -28,8 +28,6 @@ var RoomsView = {
         message.roomname === roomname;
     });
     // delete current messages in chat area
-
-    // debugger;
     $('#chats').children().remove();
     // add the updated messages to chat area
     _.each(chatData, (message) => MessagesView.renderMessage(message));
