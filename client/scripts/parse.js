@@ -1,6 +1,6 @@
 var Parse = {
   //URL of API
-  server: `http://parse.${window.CAMPUS}.hackreactor.com/chatterbox/classes/messages`,
+  server: `http://127.0.0.1:8080/classes/messages`,
 
   create: function(message, successCB, errorCB = null) {
     $.ajax({
